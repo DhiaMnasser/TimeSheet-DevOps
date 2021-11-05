@@ -6,6 +6,7 @@ tn\esprit\spring\entities\Employe.class
 tn\esprit\spring\entities\Timesheet.class
 tn\esprit\spring\services\IEntrepriseService.class
 tn\esprit\spring\controller\RestControlEntreprise.class
+tn\esprit\spring\controller\ControllerDepartementImpl.class
 tn\esprit\spring\entities\MissionExterne.class
 tn\esprit\spring\repository\DepartementRepository.class
 tn\esprit\spring\repository\MissionRepository.class
