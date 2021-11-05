@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>timesheet</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>timesheet</name>
 	<description>timesheet</description>
 
@@ -184,13 +184,13 @@
 
   <distributionManagement>
 		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>nexus-snapshots</name>
+			<id>nexus</id>
+			<name>Snapshots</name>
 			<url>http://localhost:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 		<repository>
-			<id>nexus-releases</id>
-			<name>nexus-releases</name>
+			<id>nexus</id>
+			<name>Releases</name>
 			<url>http://localhost:8081/repository/maven-releases/</url>
 		</repository>
   </distributionManagement>
