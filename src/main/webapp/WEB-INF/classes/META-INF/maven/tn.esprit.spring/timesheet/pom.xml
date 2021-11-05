@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.1.RELEASE</version>
-        <relativePath> ../TimeSheet/pom.xml</relativePath>
+        <relativePath></relativePath>
 	</parent>
 	
 	<groupId>tn.esprit.spring</groupId>
