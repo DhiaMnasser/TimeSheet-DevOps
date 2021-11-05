@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tn.esprit.spring.controller.ControllerEmployeImpl;
+import tn.esprit.spring.controllers.ControllerEmployeImpl;
 
 
 public class LoginFilter implements Filter {
