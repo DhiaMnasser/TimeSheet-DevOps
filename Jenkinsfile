@@ -3,9 +3,9 @@ pipeline {
 
 	stages{
 
-			stage('Clean'){
+			stage('Clean Install'){
 				steps{
-					bat "mvn clean"
+					bat "mvn clean install -U"
 				}				
 			}
 
