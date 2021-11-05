@@ -12,7 +12,6 @@ tn\esprit\spring\repositorys\EmployeRepository.class
 tn\esprit\spring\entities\MissionExterne.class
 tn\esprit\spring\repositorys\IContratRepository.class
 tn\esprit\spring\services\IContratService.class
-META-INF\maven\tn.esprit.spring\TimeSheet\pom.properties
 tn\esprit\spring\services\IEmployeService.class
 tn\esprit\spring\entities\Mission.class
 tn\esprit\spring\entities\TimesheetPK.class
@@ -23,8 +22,6 @@ tn\esprit\spring\repositorys\TimesheetRepository.class
 tn\esprit\spring\repositorys\IEntrepriseRepository.class
 tn\esprit\spring\controllers\TimeSheetRestControllerImpl.class
 tn\esprit\spring\entities\Contrat.class
-META-INF\maven\tn.esprit.spring\TimeSheet\pom.xml
-META-INF\MANIFEST.MF
 tn\esprit\spring\entities\Entreprise.class
 tn\esprit\spring\controllers\ControllerDepartementImpl.class
 tn\esprit\spring\controllers\RestControlEntreprise.class
