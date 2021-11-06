@@ -1,7 +1,7 @@
 pipeline {
 
     environment { 
-        registry = "YourDockerhubAccount/YourRepository" 
+        registry = "timesheet" 
         registryCredential = 'ahmedhaddad' 
         dockerImage = '' 
     }
@@ -33,36 +33,16 @@ pipeline {
                     bat "mvn deploy"
                   }
             }
-            
-            stage('Cloning our Git') { 
-                steps { 
-                    git 'https://github.com/DhiaMnasser/TimeSheet-DevOps' 
-                  }
-            } 
-        
-            stage('Building our image') { 
+   
+            stage('Docker') { 
                 steps { 
                     script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage.push() 
                     }
                 } 
             }
-
-           stage('Deploy our image') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-             }
-           } 
-          
-           stage('Cleaning up') { 
-                steps { 
-                    sh "docker rmi $registry:$BUILD_NUMBER" 
-                }
-           } 
+            
 	} 
 
 }
