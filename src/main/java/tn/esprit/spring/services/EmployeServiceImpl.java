@@ -14,10 +14,10 @@ import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.entities.Timesheet;
-import tn.esprit.spring.repository.ContratRepository;
-import tn.esprit.spring.repository.DepartementRepository;
-import tn.esprit.spring.repository.EmployeRepository;
-import tn.esprit.spring.repository.TimesheetRepository;
+import tn.esprit.spring.repositorys.ContratRepository;
+import tn.esprit.spring.repositorys.DepartementRepository;
+import tn.esprit.spring.repositorys.EmployeRepository;
+import tn.esprit.spring.repositorys.TimesheetRepository;
 
 @Service
 public class EmployeServiceImpl implements IEmployeService {
