@@ -1,7 +1,7 @@
 pipeline {
 
     environment { 
-        registry = "timesheet" 
+        registry = "ahmedhaddad/timesheet" 
         registryCredential = 'ahmedhaddad' 
         dockerImage = '' 
     }
@@ -34,14 +34,32 @@ pipeline {
                   }
             }
    
-            stage('Docker') { 
+        
+            stage('Building our image') { 
                 steps { 
-                    script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    dockerImage.push() 
+                    script {
+                    dir("C:\Program Files (x86)\Jenkins\workspace\TimeSheet") { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     }
                 } 
             }
+
+           stage('Deploy our image') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+             }
+           } 
+          
+           stage('Cleaning up') { 
+                steps { 
+                    sh "docker rmi $registry:$BUILD_NUMBER" 
+                }
+           } 
+
             
 	} 
 
