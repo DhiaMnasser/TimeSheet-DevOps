@@ -41,6 +41,7 @@ pipeline {
                     dir("C:/Program Files (x86)/Jenkins/workspace/TimeSheet") { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     }
+                  }
                 } 
             }
 
