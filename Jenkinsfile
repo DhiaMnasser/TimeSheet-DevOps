@@ -1,8 +1,8 @@
 pipeline {
 
     environment { 
-        registry = "YourDockerhubAccount/YourRepository" 
-        registryCredential = 'ahmedhaddad' 
+        registry = "dhiam/timesheet" 
+        registryCredential = 'dhiam' 
         dockerImage = '' 
     }
     
@@ -18,25 +18,25 @@ pipeline {
 
 			stage('Clean Install'){
 				steps{
-					bat "mvn clean install -U"
+					bat "mvn clean install -f TimeSheet-DevOps"
 				}				
 			}
 
 			stage('Test'){
 				steps{
-					bat "mvn test"
+					bat "mvn test -f TimeSheet-DevOps"
 				}				
 			}
 
 			stage('Sonar Analyse'){
 				steps{
-                    bat "mvn sonar:sonar"
+                    bat "mvn sonar:sonar -f TimeSheet-DevOps"
                   }
             }
             
             stage('Nexus Deploy'){
 				steps{
-                    bat "mvn deploy"
+                    bat "mvn deploy -f TimeSheet-DevOps"
                   }
             }
             
@@ -66,10 +66,12 @@ pipeline {
                 }
            } 
 	}
-
-	post{
+	
+	  post{
             always{
             cleanWs()
-        } 
+        }
+    }
+	 
 
 }
