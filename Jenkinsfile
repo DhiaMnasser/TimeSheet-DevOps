@@ -60,6 +60,22 @@ pipeline {
                     bat "docker rmi $registry:$BUILD_NUMBER" 
                 }
            } 
+           
+           stage('Pulling from docker hub') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.pull() 
+                    }
+                } 
+             }
+           } 
+		             
+           stage('Run image') { 
+                steps { 
+                    bat "docker run $registry:$BUILD_NUMBER" 
+                }
+           } 
 
             
 	} 
