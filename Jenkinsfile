@@ -1,8 +1,8 @@
 pipeline {
 
     environment { 
-        registry = "dhiam/timesheet" 
-        registryCredential = 'dhiam' 
+        registry = "hajer/timesheet" 
+        registryCredential = 'hajer' 
         dockerImage = '' 
     }
     
@@ -12,7 +12,7 @@ pipeline {
 		    
 			stage('Cloning our Git') { 
                 steps { 
-                    bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps"
+                    bat "git clone -b Hajer-Zitouni --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps"
                   }
             } 
 
