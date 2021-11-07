@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import tn.esprit.spring.entities.Contrat;
-
+import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.services.IEmployeService;
@@ -31,7 +31,7 @@ public class EmployerRestControlImpl {
 	@ResponseBody
 	public int ajouterEmployer(@RequestBody EmployeDTO employeDTO) throws ParseException {
 		
-		 Employe persistantEmploye = convertToEntity(employeDTO);
+		 Employe persistantEmploye = Employe.convertToEntity(employeDTO);
 		return employeService.addOrUpdateEmploye(persistantEmploye);
 	}
 
@@ -46,9 +46,9 @@ public class EmployerRestControlImpl {
 
 	@PostMapping("/ajouter-contrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
-
-		return employeService.ajouterContrat(contrat);
+	public int ajouterContrat(@RequestBody ContratDTO contratDTO) throws ParseException  {
+		Contrat persistantContrat = Contrat.convertToEntity(contratDTO);
+		return employeService.ajouterContrat(persistantContrat);
 	}
 
 	@PostMapping("/affecter-contrat-emp/{ref}/{idE}")
@@ -86,12 +86,7 @@ public class EmployerRestControlImpl {
 	
 
 	
-	private Employe convertToEntity(EmployeDTO employeDto) throws ParseException {
-		ModelMapper modelMapper = new ModelMapper();
-	    Employe employe = modelMapper.map(employeDto, Employe.class);
 
-	    return employe;
-	}
 	
 	
 	

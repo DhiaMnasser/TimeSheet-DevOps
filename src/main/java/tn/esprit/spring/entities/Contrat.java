@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
+
+import org.modelmapper.ModelMapper;
 
 @Entity
 public class Contrat implements Serializable {
@@ -85,5 +88,11 @@ public class Contrat implements Serializable {
 		this.employe = employe;
 	}
 	
+	public static Contrat convertToEntity(ContratDTO contratDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
+	    Contrat contrat = modelMapper.map(contratDto, Contrat.class);
+
+	    return contrat;
+	}
 	
 }
