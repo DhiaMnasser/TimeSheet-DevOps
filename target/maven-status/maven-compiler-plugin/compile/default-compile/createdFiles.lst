@@ -1,5 +1,6 @@
 tn\esprit\spring\repositorys\MissionRepository.class
 tn\esprit\spring\controllers\ControllerEntrepriseImpl.class
+tn\esprit\spring\entities\DepartementDTO.class
 tn\esprit\spring\entities\Employe.class
 tn\esprit\spring\entities\Departement.class
 tn\esprit\spring\controllers\EmployerRestControlImpl.class

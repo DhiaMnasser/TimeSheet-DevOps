@@ -20,6 +20,7 @@ C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\reposi
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\services\IEmployeService.java
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\config\LoginFilter.java
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\entities\TimesheetPK.java
+C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\entities\DepartementDTO.java
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\repositorys\IDepartementRepository.java
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\entities\Role.java
 C:\Users\Haddad\Documents\Spring\TimeSheet\src\main\java\tn\esprit\spring\repositorys\TimesheetRepository.java

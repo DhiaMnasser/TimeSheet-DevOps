@@ -71,11 +71,7 @@ pipeline {
              }
            } 
 		             
-           stage('Run image') { 
-                steps { 
-                    bat "docker run $registry:$BUILD_NUMBER" 
-                }
-           } 
+
 
             
 	} 
