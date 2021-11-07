@@ -70,10 +70,12 @@ pipeline {
                 } 
              }
            } 
-		             
-
-
-            
-	} 
+		                    
+	  post{
+            always{
+            cleanWs()
+        }
+    }
+	 
 
 }
