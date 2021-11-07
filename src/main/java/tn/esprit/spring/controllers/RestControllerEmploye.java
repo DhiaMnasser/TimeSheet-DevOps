@@ -1,5 +1,6 @@
 package tn.esprit.spring.controllers;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.entities.Timesheet;
@@ -25,7 +28,7 @@ import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
 
 @RestController
-public class RestControlEmploye {
+public class RestControllerEmploye {
 
 	@Autowired
 	IEmployeService iemployeservice;
@@ -34,25 +37,29 @@ public class RestControlEmploye {
 	@Autowired
 	ITimesheetService itimesheetservice;
 	
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControlEmploye.class);
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControllerEmploye.class);
 
 
 	
 	// http://localhost:8081/SpringMVC/servlet/ajouterEmployer
-	//{"id":1,"nom":"kallel", "prenom":"khaled", "email":"Khaled.kallel@ssiiconsulting.tn", "isActif":true, "role":"INGENIEUR"}
+	//{"id":1,"nom":"mnasser", "prenom":"dhia", "email":"dhia.mnasser@xyz.tn", "isActif":true, "role":"INGENIEUR"}
 	
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
-	public Employe ajouterEmploye(@RequestBody Employe employe)
+	public Employe ajouterEmploye(@RequestBody EmployeDTO employeDTO) throws ParseException
 	{ 
+		Employe persistantEmploye = Employe.convertToEntity(employeDTO);
 		logger.info("dans ajouterEmploye() methode");
-		logger.debug("Request{}",employe);	
-		iemployeservice.addOrUpdateEmploye(employe);
+		logger.debug("Request{}",persistantEmploye);	
+		iemployeservice.addOrUpdateEmploye(persistantEmploye);
+		
 		logger.trace("A TRACE MESSAGE");
         logger.warn("A WARN Message");    
-	    logger.debug("Response{}",employe);
+        
+	    logger.debug("Response{}",persistantEmploye);
 		logger.error("An ERROR Message");
-		return employe;
+		
+		return persistantEmploye;
 	}
 	
 	// Modifier email : http://localhost:8081/SpringMVC/servlet/modifyEmail/1/newemail
@@ -89,11 +96,12 @@ public class RestControlEmploye {
 	//{"reference":6,"dateDebut":"2020-03-01","salaire":2000,"typeContrat":"CDD"}
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
+	public int ajouterContrat(@RequestBody ContratDTO contratDTO) throws ParseException {
+		Contrat persistantContrat = Contrat.convertToEntity(contratDTO);
 		logger.info("ajouterContrat() method");
-		logger.debug("Request{}",contrat);
-		iemployeservice.ajouterContrat(contrat);
-		return contrat.getReference();
+		logger.debug("Request{}",persistantContrat);
+		iemployeservice.ajouterContrat(persistantContrat);
+		return persistantContrat.getReference();
 	}
 	
 	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1

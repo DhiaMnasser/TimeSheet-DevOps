@@ -1,5 +1,6 @@
 package tn.esprit.spring.controllers;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,16 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.DepartementDTO;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.entities.EntrepriseDTO;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
 
 @RestController
 //@Slf4j
-public class RestControlEntreprise {
+public class RestControllerEntreprise {
 
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControlEntreprise.class);
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControllerEntreprise.class);
 	@Autowired
 	IEmployeService iemployeservice;
 	@Autowired
@@ -37,9 +40,10 @@ public class RestControlEntreprise {
 
 	@PostMapping("/ajouterEntreprise")
 	@ResponseBody
-	public int ajouterEntreprise(@RequestBody Entreprise ssiiConsulting) {
-		ientrepriseservice.ajouterEntreprise(ssiiConsulting);
-		return ssiiConsulting.getId();
+	public int ajouterEntreprise(@RequestBody EntrepriseDTO entrepriseDTO) throws ParseException {
+		Entreprise persistantEntreprise= Entreprise.convertToEntity(entrepriseDTO);
+		ientrepriseservice.ajouterEntreprise(persistantEntreprise);
+		return persistantEntreprise.getId();
 	}
 	
 	// http://localhost:8081/SpringMVC/servlet/affecterDepartementAEntreprise/1/1
@@ -69,8 +73,9 @@ public class RestControlEntreprise {
 
  	@PostMapping("/ajouterDepartement")
  	@ResponseBody
-	public int ajouterDepartement(@RequestBody Departement dep) {
-		return ientrepriseservice.ajouterDepartement(dep);
+	public int ajouterDepartement(@RequestBody DepartementDTO depDTO) throws ParseException {
+		Departement persistantDepartement= Departement.convertToEntity(depDTO);
+		return ientrepriseservice.ajouterDepartement(persistantDepartement);
 	}
 	
  	 // http://localhost:8081/SpringMVC/servlet/getAllDepartementsNamesByEntreprise/1
