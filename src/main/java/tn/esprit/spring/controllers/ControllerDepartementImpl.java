@@ -19,7 +19,9 @@ public class ControllerDepartementImpl {
 	}
 	public void deleteDepartementById(int depId) {
 		idepartementservice.deleteDepartementById(depId);
-
+	}
+	public void listDepartement() {
+		idepartementservice.getAllDepartements();
 	}
 	
 	

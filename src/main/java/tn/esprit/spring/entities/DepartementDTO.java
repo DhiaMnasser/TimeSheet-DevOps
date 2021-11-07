@@ -1,5 +1,16 @@
 package tn.esprit.spring.entities;
 
-public class DepartementDTO {
+import java.util.List;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class DepartementDTO {
+	private String name;
+	private List<Employe> employes;
+	private List<Mission> missions;
+	private Entreprise entreprise;
 }

@@ -2,7 +2,7 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.List;
-
+import java.text.ParseException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -83,7 +85,19 @@ public class Departement implements Serializable {
 	public void setEntreprise(Entreprise entreprise) {
 		this.entreprise = entreprise;
 	}
+
+	@Override
+	public String toString() {
+		return "Departement [id=" + id + ", name=" + name + ", employes=" + employes + ", missions=" + missions
+				+ ", entreprise=" + entreprise + "]";
+	}
 	
+	private Departement convertToEntity(DepartementDTO departementDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
+		Departement departement = modelMapper.map(departementDto, Departement.class);
+
+	    return departement;
+	}
 	
 
 }
