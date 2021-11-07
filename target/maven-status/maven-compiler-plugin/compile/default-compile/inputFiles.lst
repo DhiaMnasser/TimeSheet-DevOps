@@ -25,6 +25,7 @@ D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spri
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\repositorys\IDepartementRepository.java
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\controllers\ControllerEmployeImpl.java
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\services\IEmployeService.java
+D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\entities\EmployeDTO.java
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\services\ContratServiceImpl.java
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\controllers\ControllerEntrepriseImpl.java
 D:\9raya\5eme\Devops\projet Devops\TimeSheet-DevOps\src\main\java\tn\esprit\spring\entities\Role.java

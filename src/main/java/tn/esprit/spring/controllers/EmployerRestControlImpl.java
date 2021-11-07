@@ -1,8 +1,9 @@
 package tn.esprit.spring.controllers;
 
+import java.text.ParseException;
 import java.util.List;
 
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entities.Contrat;
 
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.services.IEmployeService;
+
 
 @RestController
 public class EmployerRestControlImpl {
@@ -26,9 +29,10 @@ public class EmployerRestControlImpl {
 
 	@PostMapping("/add-emp")
 	@ResponseBody
-	public int ajouterEmployer(@RequestBody Employe employe) {
-
-		return employeService.addOrUpdateEmploye(employe);
+	public int ajouterEmployer(@RequestBody EmployeDTO employeDTO) throws ParseException {
+		
+		 Employe persistantEmploye = convertToEntity(employeDTO);
+		return employeService.addOrUpdateEmploye(persistantEmploye);
 	}
 
 	
@@ -80,12 +84,14 @@ public class EmployerRestControlImpl {
 		return employeService.getAllEmployeNamesJPQL();
 	}
 	
+
 	
-	
-	
-	
-	
-	
+	private Employe convertToEntity(EmployeDTO employeDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
+	    Employe employe = modelMapper.map(employeDto, Employe.class);
+
+	    return employe;
+	}
 	
 	
 	

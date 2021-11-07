@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.modelmapper.ModelMapper;
 
 import tn.esprit.spring.config.LoginFilter;
 
@@ -43,6 +44,11 @@ public class TimeSheetApplication {
 		registration.addUrlPatterns("/pages/*");
 		registration.setFilter(new LoginFilter());
 		return registration;
+	}
+	
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
 	}
  
 }

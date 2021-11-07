@@ -10,11 +10,12 @@ pipeline {
 
 	stages{
 		    
-			stage('Cloning our Git') { 
-                steps { 
-                    bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
-                  }
-            } 
+			// stage('Cloning our Git') { 
+            //     steps { 
+			// 		bat "del -f ."
+            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
+            //       }
+            // } 
 
 			stage('Clean Install'){
 				steps{
@@ -58,11 +59,28 @@ pipeline {
              }
            } 
           
-        //    stage('Cleaning up') { 
-        //         steps { 
-        //             sh "docker rmi $registry:$BUILD_NUMBER" 
-        //         }
-        //    } 
+           stage('Cleaning up') { 
+                steps { 
+                    bat "docker rmi $registry:$BUILD_NUMBER" 
+                }
+           } 
+
+		    stage('Pulling from docker hub') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.pull() 
+                    }
+                } 
+             }
+           } 
+		             
+           stage('run image') { 
+                steps { 
+                    bat "docker run $registry:$BUILD_NUMBER" 
+                }
+           } 
+
 	}
 	
 	  post{
