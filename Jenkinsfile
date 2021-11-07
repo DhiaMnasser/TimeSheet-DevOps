@@ -12,40 +12,38 @@ pipeline {
 		    
 			stage('Cloning our Git') { 
                 steps { 
-                    bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps"
+                    bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
                   }
             } 
 
 			stage('Clean Install'){
 				steps{
-					bat "mvn clean install -f TimeSheet-DevOps"
+					bat "mvn clean install"
 				}				
 			}
 
 			stage('Test'){
 				steps{
-					bat "mvn test -f TimeSheet-DevOps"
+					bat "mvn test"
 				}				
 			}
 
 			stage('Sonar Analyse'){
 				steps{
-                    bat "mvn sonar:sonar -f TimeSheet-DevOps"
+                    bat "mvn sonar:sonar"
                   }
             }
             
             stage('Nexus Deploy'){
 				steps{
-                    bat "mvn deploy -f TimeSheet-DevOps"
+                    bat "mvn deploy"
                   }
             }
             
-
-        
             stage('Building our image') { 
                 steps { 
                     script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build("$registry:$BUILD_NUMBER")
                     }
                 } 
             }
@@ -60,11 +58,11 @@ pipeline {
              }
            } 
           
-           stage('Cleaning up') { 
-                steps { 
-                    sh "docker rmi $registry:$BUILD_NUMBER" 
-                }
-           } 
+        //    stage('Cleaning up') { 
+        //         steps { 
+        //             sh "docker rmi $registry:$BUILD_NUMBER" 
+        //         }
+        //    } 
 	}
 	
 	  post{
