@@ -12,6 +12,7 @@ pipeline {
 		    
 			stage('Cloning our Git') { 
                 steps { 
+					bat "rm -rf .git"
                     bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
                   }
             } 
