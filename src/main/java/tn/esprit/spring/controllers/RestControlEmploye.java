@@ -136,22 +136,6 @@ public class RestControlEmploye {
 		iemployeservice.deleteContratById(contratId);
 	}
 
-    
-    // URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
-    @GetMapping(value = "getNombreEmployeJPQL")
-    @ResponseBody
-	public int getNombreEmployeJPQL() {
-    	logger.info("getNombreEmployeJPQL() method");
-		return iemployeservice.getNombreEmployeJPQL();
-	}
-
-    // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployeNamesJPQL
-    @GetMapping(value = "getAllEmployeNamesJPQL")
-    @ResponseBody
-	public List<String> getAllEmployeNamesJPQL() {
-    	logger.info("getAllEmployeNamesJPQL() method");
-		return iemployeservice.getAllEmployeNamesJPQL();
-	}
 
     // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployeByEntreprise/1
     @GetMapping(value = "getAllEmployeByEntreprise/{identreprise}")

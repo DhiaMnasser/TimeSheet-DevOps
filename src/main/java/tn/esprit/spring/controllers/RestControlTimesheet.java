@@ -28,29 +28,6 @@ public class RestControlTimesheet {
 	@Autowired
 	ITimesheetService itimesheetservice;
 	
-	// http://localhost:8081/SpringMVC/servlet/ajouterMission
-	//{"id":4,"name":"mamission", "description":"c ma mission"}
-	@PostMapping("/ajouterMission")
-	@ResponseBody
-	public int ajouterMission(@RequestBody Mission mission) {
-		itimesheetservice.ajouterMission(mission);
-		return mission.getId();
-	}
-
-	// http://localhost:8081/SpringMVC/servlet/affecterMissionADepartement/4/4
-	@PutMapping(value = "/affecterMissionADepartement/{idmission}/{iddept}") 
-	public void affecterMissionADepartement(@PathVariable("idmission") int missionId, @PathVariable("iddept") int depId) {
-		itimesheetservice.affecterMissionADepartement(missionId, depId);
-	}
-	
-	// http://localhost:8081/SpringMVC/servlet/ajouterTimesheet
-    //{"missionId":1,"employeId":2,"dateDebut":"2020-03-01","dateFin":"2021-03-01"}
-	
-	@PostMapping("/ajouterTimesheet/idmission/idemp/dated/datef")
-	@ResponseBody
-	public void ajouterTimesheet(@PathVariable("idmission") int missionId, @PathVariable("idemp") int employeId, @PathVariable("dated") Date dateDebut,@PathVariable("datef") Date dateFin) {
-		itimesheetservice.ajouterTimesheet(missionId, employeId, dateDebut, dateFin);
-	}
 
 	// http://localhost:8081/SpringMVC/servlet/validerTimesheet/1/1/03-10-2020/03-20-2020/1
 	@PutMapping(value = "/validerTimesheet/{idmission}/{idemp}/{dated}/{datef}/{idval}") 

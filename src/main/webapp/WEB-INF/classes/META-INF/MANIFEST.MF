@@ -3,7 +3,6 @@ Implementation-Title: timesheet
 Implementation-Version: 1.0.5-SNAPSHOT
 Built-By: Haddad
 Implementation-Vendor-Id: tn.esprit.spring
-Main-Class: tn.esprit.spring.TimeSheetApplication
 Build-Jdk: 1.8.0_202
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/timesheet
