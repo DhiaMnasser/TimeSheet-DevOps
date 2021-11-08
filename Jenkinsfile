@@ -2,7 +2,7 @@ pipeline {
 
     environment { 
         registry = "hajerzitouni/timesheet" 
-        registryCredential = 'dockerhub' 
+        registryCredential = 'dockerHub' 
         dockerImage = '' 
     }
     
