@@ -25,7 +25,7 @@ import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
 
 @RestController
-public class RestControlEmploye {
+public class RestControllerEmploye {
 
 	@Autowired
 	IEmployeService iemployeservice;
@@ -34,7 +34,7 @@ public class RestControlEmploye {
 	@Autowired
 	ITimesheetService itimesheetservice;
 	
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControlEmploye.class);
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestControllerEmploye.class);
 
 
 	

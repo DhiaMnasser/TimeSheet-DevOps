@@ -91,6 +91,7 @@ public class Contrat implements Serializable {
 	public static Contrat convertToEntity(ContratDTO contratDto) throws ParseException {
 		ModelMapper modelMapper = new ModelMapper();
 	    Contrat contrat = modelMapper.map(contratDto, Contrat.class);
+
 	    return contrat;
 	}
 	

@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.modelmapper.ModelMapper;
 
 @Entity
 public class Entreprise implements Serializable{
@@ -82,7 +85,12 @@ public class Entreprise implements Serializable{
 		this.departements.add(departement);
 	}
 
+	public static Entreprise convertToEntity(EntrepriseDTO entrepriseDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
+	    Entreprise entreprise = modelMapper.map(entrepriseDto, Entreprise.class);
 
+	    return entreprise;
+	}
 
 
 }

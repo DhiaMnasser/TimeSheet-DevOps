@@ -19,7 +19,7 @@ import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
 
 @RestController
-public class RestControlTimesheet {
+public class RestControllerTimesheet {
 
 	@Autowired
 	IEmployeService iemployeservice;

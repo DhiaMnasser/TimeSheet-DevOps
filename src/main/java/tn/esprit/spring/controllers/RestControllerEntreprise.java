@@ -21,7 +21,7 @@ import tn.esprit.spring.services.ITimesheetService;
 
 @RestController
 //@Slf4j
-public class RestControlEntreprise {
+public class RestControllerEntreprise {
 
 	@Autowired
 	IEmployeService iemployeservice;
