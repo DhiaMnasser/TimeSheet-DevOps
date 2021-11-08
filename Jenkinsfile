@@ -12,9 +12,10 @@ pipeline {
 
 			stage('Clean Install'){
 				steps{
-					bat "mvn clean install -U"
+					bat "mvn clean package -U"
 				}				
 			}
+			
 
 			stage('Test'){
 				steps{
