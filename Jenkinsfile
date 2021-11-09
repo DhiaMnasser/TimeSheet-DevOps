@@ -12,7 +12,7 @@ pipeline {
 
 			stage('Clean Package Install'){
 				steps{
-					bat "mvn clean package install -U"
+					bat "mvn clean package spring-boot:repackage install -U"
 				}				
 			}
 
