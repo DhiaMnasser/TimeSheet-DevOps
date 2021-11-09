@@ -18,6 +18,8 @@ import tn.esprit.spring.repositorys.ContratRepository;
 import tn.esprit.spring.repositorys.DepartementRepository;
 import tn.esprit.spring.repositorys.EmployeRepository;
 import tn.esprit.spring.repositorys.TimesheetRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Service
 public class EmployeServiceImpl implements IEmployeService {
@@ -30,7 +32,8 @@ public class EmployeServiceImpl implements IEmployeService {
 	ContratRepository contratRepoistory;
 	@Autowired
 	TimesheetRepository timesheetRepository;
-
+	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
+	
 	@Override
 	public Employe authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
@@ -86,7 +89,17 @@ public class EmployeServiceImpl implements IEmployeService {
 	// Tablesapce (espace disque) 
 
 	public int ajouterContrat(Contrat contrat) {
-		contratRepoistory.save(contrat);
+		try{
+			l.info("Ajout du contrat");
+			
+			l.debug("je VAIS ajouter un contrat : ");
+			contratRepoistory.save(contrat);
+			l.debug("je viens  de finir l'ajout d'un contrat : ");
+
+			l.info("contrat ajouté without errors : ");
+		}catch (Exception e) {
+			l.error("Erreur dans l'ajout du contrat : " , e);
+		}
 		return contrat.getReference();
 	}
 
