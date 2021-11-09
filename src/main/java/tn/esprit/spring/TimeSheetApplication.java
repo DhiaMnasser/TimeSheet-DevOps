@@ -17,12 +17,12 @@ import tn.esprit.spring.config.LoginFilter;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class TimesheetApplication {
+public class TimeSheetApplication {
 	// private static final Logger l = Logger.getLogger(TimesheetApplication.class);
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(TimesheetApplication.class, args);
+		SpringApplication.run(TimeSheetApplication.class, args);
 
 	}
 

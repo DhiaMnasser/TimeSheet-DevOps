@@ -14,8 +14,8 @@ import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
 
 @SpringBootTest
-class TimesheetApplicationTests {
-	private static final Logger l = LogManager.getLogger(TimesheetApplication.class);
+class TimeSheetApplicationTests {
+	private static final Logger l = LogManager.getLogger(TimeSheetApplication.class);
 
 	// private static final Logger l = Logger.getLogger(TimesheetApplication.class);
 	@Autowired
