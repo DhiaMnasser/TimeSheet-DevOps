@@ -35,9 +35,9 @@ tn\esprit\spring\services\TimesheetServiceImpl.class
 tn\esprit\spring\repositorys\DepartementRepository.class
 tn\esprit\spring\repositorys\IEmployeReppsitory.class
 tn\esprit\spring\controllers\RestControllerEmploye.class
+tn\esprit\spring\TimesheetApplication.class
 tn\esprit\spring\entities\Role.class
 tn\esprit\spring\repositorys\ContratRepository.class
-tn\esprit\spring\TimeSheetApplication.class
 tn\esprit\spring\controllers\RestControllerTimesheet.class
 tn\esprit\spring\config\LoginFilter.class
 tn\esprit\spring\services\ContratServiceImpl.class
