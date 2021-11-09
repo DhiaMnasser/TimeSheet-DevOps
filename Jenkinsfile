@@ -12,7 +12,6 @@ pipeline {
 		    
 			// stage('Cloning our Git') { 
             //     steps { 
-			// 		bat "del -f ."
             //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
@@ -41,23 +40,23 @@ pipeline {
                   }
             }
             
-        //     stage('Building our image') { 
-        //         steps { 
-        //             script { 
-        //             dockerImage = docker.build("$registry:$BUILD_NUMBER")
-        //             }
-        //         } 
-        //     }
+            stage('Building our image') { 
+                steps { 
+                    script { 
+                    dockerImage = docker.build("$registry:$BUILD_NUMBER")
+                    }
+                } 
+            }
 
-        //    stage('Deploy our image') { 
-        //         steps { 
-        //             script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.push() 
-        //             }
-        //         } 
-        //      }
-        //    } 
+           stage('Deploy our image') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+             }
+           } 
           
         //    stage('Cleaning up') { 
         //         steps { 
@@ -71,31 +70,20 @@ pipeline {
         //             docker.withRegistry( '', registryCredential ) { 
         //                 dockerImage.pull() 
         //             }
+                   
         //         } 
         //      }
         //    } 
 		             
-        //    stage('run image') { 
-        //         steps { 
-        //             bat "docker run $registry:$BUILD_NUMBER" 
-        //         }
-        //    } 
-            
-            stage('build and run timesheet with mysql'){
-				steps{
-                    bat "docker-compose up"
-                  }
-            }
+           stage('run images') { 
+                steps { 
+                    // bat "docker network create timesheet-network"
+                    bat "docker container run --name mysqldb  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6 -p 3306:3306"
+                    // bat "docker run $registry:$BUILD_NUMBER" 
+                    bat "docker container run $registry:$BUILD_NUMBER -p 8083:8083" 
+                }
+           } 
 
-        //    stage('Deploy our image') { 
-        //         steps { 
-        //             script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.push() 
-        //             }
-        //         } 
-        //      }
-        //    } 
 	}
 	
 	  post{
