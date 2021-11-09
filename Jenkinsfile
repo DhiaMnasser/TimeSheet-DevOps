@@ -9,10 +9,17 @@ pipeline {
 	agent any
 
 	stages{
+		    
+			// stage('Cloning our Git') { 
+            //     steps { 
+			// 		bat "del -f ."
+            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
+            //       }
+            // } 
 
-			stage('Clean Package'){
+			stage('Clean Install'){
 				steps{
-					bat "mvn clean package spring-boot:repackage -U"
+					bat "mvn clean install"
 				}				
 			}
 
@@ -33,15 +40,12 @@ pipeline {
                     bat "mvn deploy"
                   }
             }
-   
-        
+            
             stage('Building our image') { 
                 steps { 
-                    script {
-                    dir("C:/Program Files (x86)/Jenkins/workspace/TimeSheet") { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    script { 
+                    dockerImage = docker.build("$registry:$BUILD_NUMBER")
                     }
-                  }
                 } 
             }
 
@@ -60,8 +64,8 @@ pipeline {
                     bat "docker rmi $registry:$BUILD_NUMBER" 
                 }
            } 
-           
-           stage('Pulling from docker hub') { 
+
+		    stage('Pulling from docker hub') { 
                 steps { 
                     script { 
                     docker.withRegistry( '', registryCredential ) { 
@@ -70,8 +74,15 @@ pipeline {
                 } 
              }
            } 
-		        
-		 }            
+		             
+           stage('run image') { 
+                steps { 
+                    bat "docker run $registry:$BUILD_NUMBER" 
+                }
+           } 
+
+	}
+	
 	  post{
             always{
             cleanWs()
