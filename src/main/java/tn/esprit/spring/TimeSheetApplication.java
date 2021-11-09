@@ -22,7 +22,11 @@ import tn.esprit.spring.config.LoginFilter;
 @EnableAutoConfiguration
 public class TimeSheetApplication {
 
-	public static void main(String[] args) {SpringApplication.run(TimeSheetApplication.class, args);}
+	public static void main(String[] args) {
+
+		SpringApplication.run(TimeSheetApplication.class, args);
+	
+		}
 
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean() {
@@ -45,10 +49,10 @@ public class TimeSheetApplication {
 		registration.setFilter(new LoginFilter());
 		return registration;
 	}
-	
+
 	@Bean
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
- 
+
 }
