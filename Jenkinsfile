@@ -10,11 +10,11 @@ pipeline {
 
 	stages{
 		    
-			// stage('Cloning our Git') { 
-            //     steps { 
-            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
-            //       }
-            // } 
+			stage('Cloning our Git') { 
+                steps { 
+                    bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
+                  }
+            } 
 
 			stage('Clean Install'){
 				steps{
@@ -22,23 +22,23 @@ pipeline {
 				}				
 			}
 
-			stage('Test'){
-				steps{
-					bat "mvn test"
-				}				
-			}
+			// stage('Test'){
+			// 	steps{
+			// 		bat "mvn test"
+			// 	}				
+			// }
 
-			stage('Sonar Analyse'){
-				steps{
-                    bat "mvn sonar:sonar"
-                  }
-            }
+			// stage('Sonar Analyse'){
+			// 	steps{
+            //         bat "mvn sonar:sonar"
+            //       }
+            // }
             
-            stage('Nexus Deploy'){
-				steps{
-                    bat "mvn deploy"
-                  }
-            }
+            // stage('Nexus Deploy'){
+			// 	steps{
+            //         bat "mvn deploy"
+            //       }
+            // }
             
             stage('Building our image') { 
                 steps { 
@@ -48,15 +48,15 @@ pipeline {
                 } 
             }
 
-           stage('Deploy our image') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-             }
-           } 
+        //    stage('Deploy our image') { 
+        //         steps { 
+        //             script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.push() 
+        //             }
+        //         } 
+        //      }
+        //    } 
           
         //    stage('Cleaning up') { 
         //         steps { 
@@ -74,13 +74,34 @@ pipeline {
         //         } 
         //      }
         //    } 
-		             
+        
+        //     stage('run images') { 
+        //         steps { 
+        //             // bat "docker run $registry:$BUILD_NUMBER" 
+        //         }
+        //    } 
+            stage('create docker network') { 
+                steps { 
+
+                    bat "docker network create timesheet-network"
+ 
+                }
+           }  
+            stage('pull and run mysql') { 
+                steps { 
+
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
+ 
+                }
+           }    
            stage('run images') { 
                 steps { 
-                    // bat "docker network create timesheet-network"
-                    bat "docker container run --name mysqldb  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6 -p 3306:3306"
+                    bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
+                    // bat "docker container run --name mysqldb  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
                     // bat "docker run $registry:$BUILD_NUMBER" 
-                    bat "docker container run $registry:$BUILD_NUMBER -p 8083:8083" 
+                    // bat "docker container run $registry:$BUILD_NUMBER -p 8083:8083" 
+                    // bat "docker-compose rm" 
+                    // bat "docker-compose up" 
                 }
            } 
 
