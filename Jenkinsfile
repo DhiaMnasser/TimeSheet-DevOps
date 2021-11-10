@@ -1,8 +1,8 @@
 pipeline {
 
     environment { 
-        registry = "haddadahmed/timesheet" 
-        registryCredential = 'dockerHub' 
+        registry = "dhiam/timesheet" 
+        registryCredential = 'dhiam' 
         dockerImage = '' 
     }
     
@@ -10,6 +10,12 @@ pipeline {
 
 	stages{
 		    
+			// stage('Cloning our Git') { 
+            //     steps { 
+            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
+            //       }
+            // } 
+
 			stage('Clean Install'){
 				steps{
 					bat "mvn clean install"
@@ -55,6 +61,7 @@ pipeline {
            stage('Cleaning up') { 
                 steps { 
                     bat "docker rmi $registry:$BUILD_NUMBER" 
+               //   bat "docker rmi mysqldb" 
                 }
            } 
 
@@ -64,16 +71,34 @@ pipeline {
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.pull() 
                     }
+                   
                 } 
              }
            } 
-		             
-           stage('run image') { 
+
+        //     stage('run images') { 
+        //         steps { 
+        //             // bat "docker run $registry:$BUILD_NUMBER" 
+        //         }
+        //    } 
+            stage('create docker network') { 
                 steps { 
-                    bat "docker run $registry:$BUILD_NUMBER" 
+
+                    bat "docker network create timesheet-network"
+ 
+                }
+           }  
+            stage('pull and run mysql') { 
+                steps { 
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
+
+                }
+           }    
+           stage('run images') { 
+                steps { 
+                    bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
                 }
            } 
-
 	}
 	
 	  post{
