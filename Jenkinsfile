@@ -10,13 +10,6 @@ pipeline {
 
 	stages{
 		    
-			// stage('Cloning our Git') { 
-            //     steps { 
-			// 		bat "del -f ."
-            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
-            //       }
-            // } 
-
 			stage('Clean Install'){
 				steps{
 					bat "mvn clean install"
