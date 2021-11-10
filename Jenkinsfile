@@ -75,11 +75,21 @@ pipeline {
              }
            } 
 		             
-           stage('run image') { 
+          // stage('run image') { 
+               // steps { 
+                 //   bat "docker run $registry:$BUILD_NUMBER" 
+               // }
+          // } 
+          stage('run images') { 
                 steps { 
-                    bat "docker run $registry:$BUILD_NUMBER" 
+                    // bat "docker network create timesheet-network"
+                    bat "docker container run --name mysqldb  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6 -p 3306:3306"
+                    // bat "docker run $registry:$BUILD_NUMBER" 
+                    bat "docker container run $registry:$BUILD_NUMBER -p 8083:8083" 
                 }
            } 
+
+	}
 
 	}
 	
