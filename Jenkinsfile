@@ -1,8 +1,8 @@
 pipeline {
 
     environment { 
-        registry = "dhiam/timesheet" 
-        registryCredential = 'dhiam' 
+        registry = "haddadahmed/timesheet" 
+        registryCredential = 'dockerHub' 
         dockerImage = '' 
     }
     
@@ -10,12 +10,6 @@ pipeline {
 
 	stages{
 		    
-			// stage('Cloning our Git') { 
-            //     steps { 
-            //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
-            //       }
-            // } 
-
 			stage('Clean Install'){
 				steps{
 					bat "mvn clean install"
@@ -96,7 +90,7 @@ pipeline {
            }    
            stage('run images') { 
                 steps { 
-                    bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
+                    bat "docker container run --network timesheet-network --name timesheet-container -p 8085:8085 -d $registry:$BUILD_NUMBER"
                 }
            } 
 	}
