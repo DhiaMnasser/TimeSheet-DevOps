@@ -78,7 +78,7 @@ pipeline {
             stage('create docker network') { 
                 steps { 
 
-                    bat "docker network create timesheet-network"
+                 //   bat "docker network create timesheet-network"
  
                 }
            }  
