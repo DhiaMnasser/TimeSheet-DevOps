@@ -75,13 +75,13 @@ pipeline {
         //             // bat "docker run $registry:$BUILD_NUMBER" 
         //         }
         //    } 
-            stage('create docker network') { 
-                steps { 
+        //   stage('create docker network') { 
+        //        steps { 
 
-                 //   bat "docker network create timesheet-network"
+        //            bat "docker network create timesheet-network"
  
-                }
-           }  
+          //      }
+          // }  
             stage('pull and run mysql') { 
                 steps { 
                     bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
