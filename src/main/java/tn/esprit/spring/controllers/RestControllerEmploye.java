@@ -39,14 +39,14 @@ public class RestControllerEmploye {
 
 	
 	// http://localhost:8081/SpringMVC/servlet/ajouterEmployer
-	//{"id":1,"nom":"kallel", "prenom":"khaled", "email":"Khaled.kallel@ssiiconsulting.tn", "isActif":true, "role":"INGENIEUR"}
+	
 	
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
 	public Employe ajouterEmploye(@RequestBody Employe employe)
 	{ 
 		logger.info("dans ajouterEmploye() methode");
-		logger.debug("Request{}",employe);	
+		logger.debug("ajout",employe);	
 		iemployeservice.addOrUpdateEmploye(employe);
 		logger.trace("A TRACE MESSAGE");
         logger.warn("A WARN Message");    
@@ -60,7 +60,7 @@ public class RestControllerEmploye {
 	@ResponseBody
 	public void mettreAjourEmailByEmployeId(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {
 		logger.info("In mettreAjourEmailByEmployeId() method");
-		logger.debug("Request{}",email);
+		logger.debug("Request()",email);
 		logger.debug("Request{}",employeId);
 		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
 		
@@ -69,8 +69,8 @@ public class RestControllerEmploye {
 	@PutMapping(value = "/affecterEmployeADepartement/{idemp}/{iddept}") 
 	public void affecterEmployeADepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId) {
 		logger.info("affecterEmployeADepartement() method");
-		logger.debug("Request{}",depId);
-		logger.debug("Request{}",employeId);
+		logger.debug("depId",depId);
+		logger.debug("empid",employeId);
 		iemployeservice.affecterEmployeADepartement(employeId, depId);
 		
 	}
@@ -152,8 +152,8 @@ public class RestControllerEmploye {
  	@ResponseBody
 	public void mettreAjourEmailByEmployeIdJPQL(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {	
  		logger.info("mettreAjourEmailByEmployeIdJPQL() method");
- 	    logger.debug("Request{}",email);
- 	    logger.debug("Request{}",employeId);
+ 	    logger.debug("Requestemail",email);
+ 	    logger.debug("Requestempid",employeId);
  		iemployeservice.mettreAjourEmailByEmployeIdJPQL(email, employeId);
 		
 	}
@@ -181,7 +181,7 @@ public class RestControllerEmploye {
     @ResponseBody
 	public Double getSalaireMoyenByDepartementId(@PathVariable("iddept")int departementId) {
     	logger.info("getSalaireMoyenByDepartementId() method");
- 	    logger.debug("Request{}",departementId);
+ 	    logger.debug("Requestdepid",departementId);
     	return iemployeservice.getSalaireMoyenByDepartementId(departementId);
 	}
 
