@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.dto.ContratDTo;
+import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.services.IContratService;
 
 
@@ -23,7 +23,7 @@ public class RestControlContrat {
 	// http://localhost:8081/SpringMVC/servlet/ajouterContrat
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody ContratDTo contrat) {
+	public int ajouterContrat(@RequestBody ContratDTO contrat) {
 		return 	icontratservice.ajouterContrat(contrat);
 	}
 	

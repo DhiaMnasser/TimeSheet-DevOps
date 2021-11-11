@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
-import tn.esprit.spring.dto.ContratDTo;
 import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.services.ContratServiceImpl;
 
@@ -44,7 +44,7 @@ public class ContratServiceImplTest {
 	
 	@Test
 	public void testAjouterContrat(){
-		ContratDTo nvcontrat = new ContratDTo(new Date() , "CDI" , 1250 );
+		ContratDTO nvcontrat = new ContratDTO(new Date() , "CDI" , 1250 );
 		Integer idC=cs.ajouterContrat(nvcontrat);
 		Assert.notNull(idC,"contrat n'est pas ajouté");
 		

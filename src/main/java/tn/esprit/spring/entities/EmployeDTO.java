@@ -1,10 +1,9 @@
-package tn.esprit.spring.dto;
+package tn.esprit.spring.entities;
 
 import lombok.Data;
-import tn.esprit.spring.entities.Role;
 
 @Data
-public class EmployeDTo {
+public class EmployeDTO {
    private int id;
    private String nom;
    private String prenom;
@@ -15,7 +14,7 @@ public class EmployeDTo {
    
    
 
-public EmployeDTo() {
+public EmployeDTO() {
 	super();
 }
 
@@ -71,7 +70,7 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public EmployeDTo(String nom, String prenom, String email, String password, boolean actif, Role role) {
+public EmployeDTO(String nom, String prenom, String email, String password, boolean actif, Role role) {
 	super();
 	this.nom = nom;
 	this.prenom = prenom;
@@ -81,7 +80,7 @@ public EmployeDTo(String nom, String prenom, String email, String password, bool
 	this.role = role;
 }
 
-public EmployeDTo(int id, String nom, String prenom, String email, String password, boolean actif, Role role) {
+public EmployeDTO(int id, String nom, String prenom, String email, String password, boolean actif, Role role) {
 	super();
 	this.id = id;
 	this.nom = nom;
@@ -92,7 +91,7 @@ public EmployeDTo(int id, String nom, String prenom, String email, String passwo
 	this.role = role;
 }
 
-public EmployeDTo(int id) {
+public EmployeDTO(int id) {
 	super();
 	this.id = id;
 }

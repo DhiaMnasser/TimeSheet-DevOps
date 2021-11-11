@@ -8,9 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.converter.ContratConverter;
-import tn.esprit.spring.dto.ContratDTo;
 import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.repository.ContratRepository;
 
 @Service
@@ -23,7 +22,7 @@ public class ContratServiceImpl implements IContratService {
 	ContratConverter converter;
 	private static final Logger l = LogManager.getLogger(ContratServiceImpl.class);
 	
-	public Integer ajouterContrat(ContratDTo  nvcontrat) {
+	public Integer ajouterContrat(ContratDTO  nvcontrat) {
 		
 		l.info("In ajouterContrat()");
 		try{

@@ -1,30 +1,32 @@
-package tn.esprit.spring.converter;
+package tn.esprit.spring.services;
 
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import tn.esprit.spring.dto.DepartementDTo;
+
 import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.DepartementDTO;
+
 import java.util.stream.Collectors;
 
 @Component
 public class DepartementConverter {
 	
 	   //Transformer departement DTO en Departement
-       public Departement depTodo(DepartementDTo departement) {
+       public Departement depTodo(DepartementDTO departement) {
     	   ModelMapper mapper =new ModelMapper();
     	   return mapper.map(departement, Departement.class);
        }
        
        //Transformer departement en deprtement DTO
-       public DepartementDTo entityToDto(Departement dep) {
+       public DepartementDTO entityToDTO(Departement dep) {
    		ModelMapper mapper =new ModelMapper();
-   		return mapper.map(dep, DepartementDTo.class);
+   		return mapper.map(dep, DepartementDTO.class);
    		
    	}
        //Retourner la liste des departement DTO
-       public  List<DepartementDTo> deplistToDto(List<Departement> departement) {
-   		return	departement.stream().map(this::entityToDto).collect(Collectors.toList());
+       public  List<DepartementDTO> deplistToDTO(List<Departement> departement) {
+   		return	departement.stream().map(this::entityToDTO).collect(Collectors.toList());
    		
    	}
 	

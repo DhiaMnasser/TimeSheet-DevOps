@@ -1,11 +1,11 @@
-package tn.esprit.spring.dto;
+package tn.esprit.spring.entities;
 
 
 import java.util.Date;
 
 import lombok.Data;
 @Data
-public class ContratDTo {
+public class ContratDTO {
 	private  Date dateDebut;
 	private String typeContrat;
 	public Date getDateDebut() {
@@ -27,13 +27,13 @@ public class ContratDTo {
 		this.salaire = salaire;
 	}
 	private float salaire;
-	public ContratDTo(Date dateDebut, String typeContrat, float salaire) {
+	public ContratDTO(Date dateDebut, String typeContrat, float salaire) {
 		super();
 		this.dateDebut = dateDebut;
 		this.typeContrat = typeContrat;
 		this.salaire = salaire;
 	}
-	public ContratDTo() {
+	public ContratDTO() {
 		super();
 		
 	}

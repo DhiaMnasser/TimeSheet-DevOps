@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import tn.esprit.spring.converter.EmployeConverter;
-import tn.esprit.spring.dto.EmployeDTo;
+
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.services.EmployeConverter;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
@@ -34,7 +35,7 @@ public class RestControlEmploye {
 	// http://localhost:8081/SpringMVC/servlet/ajouterEmployer
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
-	public Employe ajouterEmploye(@RequestBody EmployeDTo employe)
+	public Employe ajouterEmploye(@RequestBody EmployeDTO employe)
 	{
 		iemployeservice.addOrUpdateEmploye(employe);
 		return converter.empTodo(employe);

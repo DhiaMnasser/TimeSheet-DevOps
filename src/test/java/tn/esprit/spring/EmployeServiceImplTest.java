@@ -13,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
-import tn.esprit.spring.dto.EmployeDTo;
+
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.repository.ContratRepository;
@@ -48,7 +49,7 @@ public class EmployeServiceImplTest {
 	@Test
 	public void testaddOrUpdateEmploye()  {      
 		 l.info("in testaddOrUpdateEmploye()");
-		 idE=iempserv.addOrUpdateEmploye(new EmployeDTo("Devops","Devops", "test@devops.fr","xx", true, Role.ADMINISTRATEUR));
+		 idE=iempserv.addOrUpdateEmploye(new EmployeDTO("Devops","Devops", "test@devops.fr","xx", true, Role.ADMINISTRATEUR));
 		 Assert.notNull(idE,"employe added failed");
 		 l.info("Out testaddOrUpdateEmploye()");
 	}

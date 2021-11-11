@@ -1,9 +1,9 @@
-package tn.esprit.spring.dto;
+package tn.esprit.spring.entities;
 
 import lombok.Data;
 
 @Data
-public class DepartementDTo {
+public class DepartementDTO {
    private int id;
    private String name;
 
@@ -15,11 +15,11 @@ public class DepartementDTo {
 			this.id = id;
 		}
 
-public DepartementDTo(String name) {
+public DepartementDTO(String name) {
 	super();
 	this.name = name;
 }
-public DepartementDTo() {
+public DepartementDTO() {
 	super();
 }
 public void setName(String name) {

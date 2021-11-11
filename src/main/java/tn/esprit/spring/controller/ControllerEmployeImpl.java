@@ -9,8 +9,9 @@ import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import tn.esprit.spring.dto.EmployeDTo;
+
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.services.IEmployeService;
@@ -68,7 +69,7 @@ IEmployeService employeService;
 
 	public String addEmploye() {
 		if (authenticatedUser==null || !loggedIn) return URL_DUPLI;
-		employeService.addOrUpdateEmploye(new EmployeDTo(nom, prenom, email, password, actif, role)); 
+		employeService.addOrUpdateEmploye(new EmployeDTO(nom, prenom, email, password, actif, role)); 
 		return "null"; 
 	}  
 
@@ -96,7 +97,7 @@ IEmployeService employeService;
 	public String updateEmploye() 
 	{   String navigateTo = "null";
 		if (authenticatedUser==null || !loggedIn) return URL_DUPLI;
-		employeService.addOrUpdateEmploye(new EmployeDTo(employeIdToBeUpdated, nom, prenom, email, password, actif, role)); 
+		employeService.addOrUpdateEmploye(new EmployeDTO(employeIdToBeUpdated, nom, prenom, email, password, actif, role)); 
 		return navigateTo; 
 
 	} 
@@ -141,7 +142,7 @@ IEmployeService employeService;
 		this.loggedIn = loggedIn;
 	}
 
-	public int ajouterEmploye(EmployeDTo employe)
+	public int ajouterEmploye(EmployeDTO employe)
 	{
 		employeService.addOrUpdateEmploye(employe);
 		return employe.getId();

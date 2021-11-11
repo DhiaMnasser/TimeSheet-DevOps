@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.spring.converter.EmployeConverter;
-import tn.esprit.spring.dto.EmployeDTo;
+
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.DepartementRepository;
@@ -35,7 +35,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
 
 	@Override
-	public Integer addOrUpdateEmploye(EmployeDTo employe) {
+	public Integer addOrUpdateEmploye(EmployeDTO employe) {
 		
 		try {
 			l.info("In addOrUpdateEmploye()");

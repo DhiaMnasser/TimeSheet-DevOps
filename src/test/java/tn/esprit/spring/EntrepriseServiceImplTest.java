@@ -13,8 +13,8 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import tn.esprit.spring.dto.EntrepriseDTo;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.entities.EntrepriseDTO;
 import tn.esprit.spring.repository.EntrepriseRepository;
 import tn.esprit.spring.services.IEntrepriseService;
 
@@ -36,7 +36,7 @@ public class EntrepriseServiceImplTest {
 	@Test
 	public void testAjouterEntreprise()  {  
 		l.info("In methode testAjouterEntreprise()");
-		 idE=ientrepriseservice.ajouterEntreprise(new EntrepriseDTo("Devops","Devops"));
+		 idE=ientrepriseservice.ajouterEntreprise(new EntrepriseDTO("Devops","Devops"));
 		assertNotNull(idE);
 		l.info("Out methode testAjouterEntreprise()");
 	}

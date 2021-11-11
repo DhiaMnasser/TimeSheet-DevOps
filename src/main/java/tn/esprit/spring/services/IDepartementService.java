@@ -2,8 +2,8 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
-import tn.esprit.spring.dto.DepartementDTo;
 import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.DepartementDTO;
 
 
 public interface IDepartementService {
@@ -12,7 +12,7 @@ public interface IDepartementService {
 	public List<Departement> getAllDepartements();
 	
 	
-	public Integer ajouterDepartement(DepartementDTo dep);
+	public Integer ajouterDepartement(DepartementDTO dep);
 
 	public Departement affecterDepartementAEntreprise(int depId, int entrepriseId);
 	

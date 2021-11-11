@@ -1,9 +1,9 @@
-package tn.esprit.spring.dto;
+package tn.esprit.spring.entities;
 
 import lombok.Data;
 
 @Data
-public class EntrepriseDTo {
+public class EntrepriseDTO {
 	  private int id;
 	  private String name;
 	  private String raisonSocial;
@@ -32,26 +32,26 @@ public class EntrepriseDTo {
 			this.raisonSocial = raisonSocial;
 		}
 		
-		public EntrepriseDTo() {
+		public EntrepriseDTO() {
 			super();
 		}
 		
 		
 
-		public EntrepriseDTo(int id,String name, String raisonSocial) {
+		public EntrepriseDTO(int id,String name, String raisonSocial) {
 			super();
 			this.name = name;
 			this.raisonSocial = raisonSocial;
 			this.id = id;
 		}
 
-		public EntrepriseDTo(String name, String raisonSocial) {
+		public EntrepriseDTO(String name, String raisonSocial) {
 			super();
 			this.name = name;
 			this.raisonSocial = raisonSocial;
 		}
 
-		public EntrepriseDTo(int id) {
+		public EntrepriseDTO(int id) {
 			super();
 			this.id = id;
 		}	

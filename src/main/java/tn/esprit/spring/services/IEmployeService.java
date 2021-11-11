@@ -3,8 +3,8 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
-import tn.esprit.spring.dto.EmployeDTo;
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.EmployeDTO;
 import tn.esprit.spring.entities.Entreprise;
 
 
@@ -23,5 +23,5 @@ public interface IEmployeService {
 	public float getSalaireByEmployeIdJPQL(int employeId);
 	public Double getSalaireMoyenByDepartementId(int departementId);
 	public List<Employe> getAllEmployes();
-	Integer addOrUpdateEmploye(EmployeDTo employe);
+	Integer addOrUpdateEmploye(EmployeDTO employe);
 }

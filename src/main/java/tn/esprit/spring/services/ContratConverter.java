@@ -1,10 +1,11 @@
-package tn.esprit.spring.converter;
+package tn.esprit.spring.services;
 
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import tn.esprit.spring.dto.ContratDTo;
+
 import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.entities.ContratDTO;
 
 import java.util.stream.Collectors;
 
@@ -12,21 +13,21 @@ import java.util.stream.Collectors;
 public class ContratConverter {
 	
 	   //Transformer Contrat Dto en contrat
-       public Contrat contdto(ContratDTo nvcontrat) {
+       public Contrat contdto(ContratDTO nvcontrat) {
     	   ModelMapper mapper =new ModelMapper();
     	 return mapper.map(nvcontrat, Contrat.class);
    		
        }
        
        //Transformer contrat en contrat DTO
-       public ContratDTo entityToDto(Contrat cont) {
+       public ContratDTO entityToDTO(Contrat cont) {
    		ModelMapper mapper =new ModelMapper();
-   		return mapper.map(cont, ContratDTo.class);
+   		return mapper.map(cont, ContratDTO.class);
    		
    	}
        //Retourner la liste des Contrat DTO
-       public  List<ContratDTo> contlistToDto(List<Contrat> contrat) {
-   		return	contrat.stream().map(this::entityToDto).collect(Collectors.toList());
+       public  List<ContratDTO> contlistToDTO(List<Contrat> contrat) {
+   		return	contrat.stream().map(this::entityToDTO).collect(Collectors.toList());
    		
    	}
 	

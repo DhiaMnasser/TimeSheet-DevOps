@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tn.esprit.spring.converter.EntrepriseConverter;
-import tn.esprit.spring.dto.EntrepriseDTo;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.entities.EntrepriseDTO;
+
 import org.apache.log4j.Logger;
 import tn.esprit.spring.repository.EntrepriseRepository;
 import org.apache.log4j.LogManager;
@@ -28,7 +28,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	// Méthode qui permet d'a
 	
 	@Transactional
-	public Integer ajouterEntreprise(EntrepriseDTo entreprise) {
+	public Integer ajouterEntreprise(EntrepriseDTO entreprise) {
 		
 		try{
 			l.info("In methode ajouterEntreprise()");
