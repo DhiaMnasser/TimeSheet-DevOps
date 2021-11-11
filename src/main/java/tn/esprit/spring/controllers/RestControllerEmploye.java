@@ -201,6 +201,14 @@ public class RestControllerEmploye {
 		logger.info("getAllEmployes() method");
 		return iemployeservice.getAllEmployes();
 	}
+	
+	// URL : http://localhost:8081/SpringMVC/servlet/getAllEmployes
+		@GetMapping(value = "/getAllContrats")
+	    @ResponseBody
+		public List<Contrat> getAllContrats() {
+			logger.info("getAllContrats() method");
+			return iemployeservice.getAllContrats();
+		}
 
 	
 	

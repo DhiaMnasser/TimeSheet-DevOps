@@ -22,7 +22,12 @@
 					bat "mvn clean install"
 				}				
 			}
+            stage('pull and run mysql') { 
+                steps { 
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
 
+                }
+           } 
 			stage('Test'){
 				steps{
 					bat "mvn test"
@@ -89,12 +94,7 @@
  
         //         }
         //    }  
-            stage('pull and run mysql') { 
-                steps { 
-                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
-
-                }
-           }    
+               
            stage('run images') { 
                 steps { 
                     bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
