@@ -1,4 +1,5 @@
 tn\esprit\spring\repositorys\MissionRepository.class
+tn\esprit\spring\controllers\RestControllerDepartement.class
 tn\esprit\spring\entities\Employe.class
 tn\esprit\spring\entities\Timesheet.class
 tn\esprit\spring\services\IEntrepriseService.class
