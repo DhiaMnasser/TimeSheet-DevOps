@@ -90,7 +90,7 @@ public class Departement implements Serializable {
 	public static Departement convertToEntity(DepartementDTO departementDto) throws ParseException {
 		ModelMapper modelMapper = new ModelMapper();
 	    Departement departement = modelMapper.map(departementDto, Departement.class);
-
+	    
 	    return departement;
 	}
 	

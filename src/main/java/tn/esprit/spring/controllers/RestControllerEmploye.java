@@ -48,25 +48,34 @@ public class RestControllerEmploye {
 	@ResponseBody
 	public Employe ajouterEmploye(@RequestBody EmployeDTO employeDTO) throws ParseException
 	{ 
+		logger.info("dans ajouterEmploye() methode");
+		logger.debug("Request{}",employeDTO);	
 		Employe persistantEmploye = Employe.convertToEntity(employeDTO);
 		
 		iemployeservice.addOrUpdateEmploye(persistantEmploye);
+		logger.trace("A TRACE MESSAGE");
+		 logger.warn("A WARN Message");    
+		    logger.debug("Response{}",employeDTO);
+			logger.error("An ERROR Message");
 		
 		return persistantEmploye;
 	}
 	
-	// Modifier email : http://localhost:8081/SpringMVC/servlet/modifyEmail/1/newemail
 	@PutMapping(value = "/modifyEmail/{id}/{newemail}") 
 	@ResponseBody
 	public void mettreAjourEmailByEmployeId(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {
-		
+		logger.info("In mettreAjourEmailByEmployeId() method");
+		logger.debug("Request{}",email);
+		logger.debug("Request{}",employeId);
 		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
 		
 	}
 	// http://localhost:8081/SpringMVC/servlet/affecterEmployeADepartement/1/1
 	@PutMapping(value = "/affecterEmployeADepartement/{idemp}/{iddept}") 
 	public void affecterEmployeADepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId) {
-		
+		logger.info("affecterEmployeADepartement() method");
+		logger.debug("Request{}",depId);
+		logger.debug("Request{}",employeId);
 		iemployeservice.affecterEmployeADepartement(employeId, depId);
 		
 	}
@@ -75,7 +84,9 @@ public class RestControllerEmploye {
 	@PutMapping(value = "/desaffecterEmployeDuDepartement/{idemp}/{iddept}") 
 	public void desaffecterEmployeDuDepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId)
 	{
-		
+		logger.info(" In desaffecterEmployeDuDepartement() method");
+		logger.debug("Request{}",depId);
+		logger.debug("Request{}",employeId);
 		iemployeservice.desaffecterEmployeDuDepartement(employeId, depId);
 	}
 
@@ -87,14 +98,18 @@ public class RestControllerEmploye {
 		Contrat persistantContrat = Contrat.convertToEntity(contratDTO);
 		
 		iemployeservice.ajouterContrat(persistantContrat);
+		logger.info("ajouterContrat() method");
+		logger.debug("Request{}",contratDTO);
 		return persistantContrat.getReference();
 	}
-	
+
 	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
    @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
 	public void affecterContratAEmploye(@PathVariable("idcontrat")int contratId, @PathVariable("idemp")int employeId)
 	{
-	   
+	    logger.info("affecterContratAEmploye() method");
+	    logger.debug("Request{}",contratId);
+		logger.debug("Request{}",employeId);
 		iemployeservice.affecterContratAEmploye(contratId, employeId);
 	}
 
@@ -104,7 +119,8 @@ public class RestControllerEmploye {
    @GetMapping(value = "getEmployePrenomById/{idemp}")
    @ResponseBody
    public String getEmployePrenomById(@PathVariable("idemp")int employeId) {
-	   
+	    logger.info("getEmployePrenomById() method");
+	    logger.debug("Request{}",employeId);
 		return iemployeservice.getEmployePrenomById(employeId);
 	}
 
@@ -112,7 +128,8 @@ public class RestControllerEmploye {
     @DeleteMapping("/deleteEmployeById/{idemp}") 
 	@ResponseBody 
 	public void deleteEmployeById(@PathVariable("idemp")int employeId) {
-    	
+    	logger.info("deleteEmployeById() method");
+ 	    logger.debug("Request{}",employeId);
 		iemployeservice.deleteEmployeById(employeId);
 		
 	}
@@ -121,7 +138,8 @@ public class RestControllerEmploye {
     @DeleteMapping("/deleteContratById/{idcontrat}") 
 	@ResponseBody
 	public void deleteContratById(@PathVariable("idcontrat")int contratId) {
-    	
+    	logger.info("deleteContratById() method");
+ 	    logger.debug("Request{}",contratId);
 		iemployeservice.deleteContratById(contratId);
 	}
 
@@ -130,7 +148,7 @@ public class RestControllerEmploye {
     @GetMapping(value = "getNombreEmployeJPQL")
     @ResponseBody
 	public int getNombreEmployeJPQL() {
-    	
+    	logger.info("getNombreEmployeJPQL() method");
 		return iemployeservice.getNombreEmployeJPQL();
 	}
 
@@ -138,7 +156,7 @@ public class RestControllerEmploye {
     @GetMapping(value = "getAllEmployeNamesJPQL")
     @ResponseBody
 	public List<String> getAllEmployeNamesJPQL() {
-    	
+    	logger.info("getAllEmployeNamesJPQL() method");
 		return iemployeservice.getAllEmployeNamesJPQL();
 	}
 
@@ -146,7 +164,8 @@ public class RestControllerEmploye {
     @GetMapping(value = "getAllEmployeByEntreprise/{identreprise}")
     @ResponseBody
 	public List<Employe> getAllEmployeByEntreprise(@PathVariable("identreprise") int identreprise) {
-    	
+    	logger.info("getAllEmployeByEntreprise() method");
+ 	    logger.debug("Request{}",identreprise);
     	Entreprise entreprise=ientrepriseservice.getEntrepriseById(identreprise);
 		return iemployeservice.getAllEmployeByEntreprise(entreprise);
 	}
@@ -155,7 +174,9 @@ public class RestControllerEmploye {
  	@PutMapping(value = "/mettreAjourEmailByEmployeIdJPQL/{id}/{newemail}") 
  	@ResponseBody
 	public void mettreAjourEmailByEmployeIdJPQL(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {	
- 		
+ 		logger.info("mettreAjourEmailByEmployeIdJPQL() method");
+ 	    logger.debug("Request{}",email);
+ 	    logger.debug("Request{}",employeId);
  		iemployeservice.mettreAjourEmailByEmployeIdJPQL(email, employeId);
 		
 	}
@@ -164,7 +185,7 @@ public class RestControllerEmploye {
     @DeleteMapping("/deleteAllContratJPQL") 
 	@ResponseBody
 	public void deleteAllContratJPQL() {
-    	
+    	logger.info("deleteAllContratJPQL() method");
 		iemployeservice.deleteAllContratJPQL();
 		
 	}
@@ -173,7 +194,8 @@ public class RestControllerEmploye {
     @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")
     @ResponseBody
 	public float getSalaireByEmployeIdJPQL(@PathVariable("idemp")int employeId) {
-    	
+    	logger.info("getSalaireByEmployeIdJPQL() method");
+ 	    logger.debug("Request{}",employeId);
 		return iemployeservice.getSalaireByEmployeIdJPQL(employeId);
 	}
 
@@ -181,7 +203,8 @@ public class RestControllerEmploye {
     @GetMapping(value = "getSalaireMoyenByDepartementId/{iddept}")
     @ResponseBody
 	public Double getSalaireMoyenByDepartementId(@PathVariable("iddept")int departementId) {
-    	
+    	logger.info("getSalaireMoyenByDepartementId() method");
+ 	    logger.debug("Request{}",departementId);
     	return iemployeservice.getSalaireMoyenByDepartementId(departementId);
 	}
 
@@ -189,7 +212,7 @@ public class RestControllerEmploye {
 	//TODO
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, Date dateDebut,
 			Date dateFin) {
-		
+		logger.info("getTimesheetsByMissionAndDate() method");
 		return iemployeservice.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
 	}
 
@@ -198,10 +221,11 @@ public class RestControllerEmploye {
 	@GetMapping(value = "/getAllEmployes")
     @ResponseBody
 	public List<Employe> getAllEmployes() {
-		
+		logger.info("getAllEmployes() method");
 		return iemployeservice.getAllEmployes();
 	}
 
 	
 	
+
 }

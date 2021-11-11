@@ -91,6 +91,14 @@ public class ControllerEmployeImpl  {
 		return "erreur in addEmploye()"+ e;
 	}
 	}  
+	public int addEmploye2(Employe e) {
+
+	
+		return employeService.addOrUpdateEmploye(e); 
+			
+			
+		
+		}  
 
 	public String removeEmploye(int employeId) {
 		

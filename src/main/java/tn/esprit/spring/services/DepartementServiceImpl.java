@@ -2,12 +2,12 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.spring.entities.DepartementDTO;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repositorys.DepartementRepository;
@@ -18,10 +18,13 @@ public class DepartementServiceImpl implements IDepartementService {
 
 
 	@Autowired
-	DepartementRepository deptRepoistory;
+	DepartementRepository deptRepository;
     @Autowired
-    EntrepriseRepository entrepriseRepoistory;
-	private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);
+    EntrepriseRepository entrepriseRepository;
+
+	
+    
+    private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);
 	
 	//Récupération de la liste des département
     public List<Departement> getAllDepartements() {
@@ -30,7 +33,7 @@ public class DepartementServiceImpl implements IDepartementService {
     	try{
 			l.info("In getAllDepartements()");
 			l.debug("Je vais récupérer la liste département");
-			list.add( (Departement) deptRepoistory.findAll());
+			list=  (ArrayList<Departement>) deptRepository.findAll();
 			l.debug("La liste de département est récupéré avec succés");
 			l.info("Out getAllDepartements()");		
 			return list;
@@ -45,7 +48,7 @@ public class DepartementServiceImpl implements IDepartementService {
 		try {
 				l.info(" In getDepartementById() : ");
 				
-				Departement dep =  deptRepoistory.findById(departmentId).orElse(null);
+				Departement dep =  deptRepository.findById(departmentId).orElse(null);
 				l.info(" Out of getDepartementById(). ");
 				return dep ; 
 		} catch (Exception e) {
@@ -55,21 +58,22 @@ public class DepartementServiceImpl implements IDepartementService {
 
 }
     	
-	@Transactional
     //Ajout d'une département	
-	public Integer ajouterDepartement(Departement dep) {
+	public Integer ajouterDepartement(DepartementDTO dep) {
 		try{
 			l.info("In ajouterDepartement()");
-			deptRepoistory.save(dep);
-			l.debug("departement ajouté et portant la ref  = "+dep.getId());
-			l.info("Out ajouterDepartement()");
-			return dep.getId();
+			Departement depart=Departement.convertToEntity(dep);
+			deptRepository.save(depart);
+			l.debug("departement ajouté et portant la ref  = "+depart.getId());
+			return depart.getId();
 		} catch (Exception e) {
 			l.error("erreur dans la methode ajouterContrat() :"+e);
 			return null;
 		}
 		
+		
 	}
+
 	//Affectation d'une département à une entreprise
 	public Departement affecterDepartementAEntreprise(int depId, int entrepriseId) {
 		         try {
@@ -77,9 +81,9 @@ public class DepartementServiceImpl implements IDepartementService {
 
 					l.info("In affecterDepartementAEntreprise()");
 					l.debug("Je vais récupérer le département par son id");
-					Optional<Departement> departementManaged=deptRepoistory.findById(depId);
+					Optional<Departement> departementManaged=deptRepository.findById(depId);
 						l.debug("Je vais récupérer l'entreprise par son id");
-						Optional<Entreprise> entrpriseManaged=entrepriseRepoistory.findById(entrepriseId);	
+						Optional<Entreprise> entrpriseManaged=entrepriseRepository.findById(entrepriseId);	
 		        	 if(departementManaged.isPresent() && entrpriseManaged.isPresent()) {	
 
 					l.debug("je vais récupérer l'entreprise par son id");
@@ -89,11 +93,14 @@ public class DepartementServiceImpl implements IDepartementService {
 					l.debug("je vais affecter l'entreprise récupérer au département ");
 					depManagedEntity.setEntreprise(entrpriseManaged.get());
 					l.debug("entreprise affectée à l'entreprise avec succés dont l'id est de département est"+depManagedEntity.getId());
-					deptRepoistory.save(depManagedEntity);	
+					deptRepository.save(depManagedEntity);	
 					l.debug("entreprise est affectée a l'entreprise avec succées,id de département est   = "+depManagedEntity.getId());
 					l.info("Out ajouterDepartement()");
 					return depManagedEntity;
 						}
+		        	 else{
+		        		 l.warn("Soit département avec l'id"+depId+"n'existe pas ou bien entreprise avec id"+entrepriseId+"n'existe pas");
+		        	 }
 				}
 				catch (Exception e) {
 					l.error("erreur dans la methode affecterDepartementAEntreprise() :"+e);
@@ -108,12 +115,15 @@ public class DepartementServiceImpl implements IDepartementService {
 	public Integer deleteDepartementById(int depId) {
 		try {
 			l.info("In deleteDepartementById()");
-			Optional<Departement> departement=deptRepoistory.findById(depId);
+			Optional<Departement> departement=deptRepository.findById(depId);
 			if(departement.isPresent()) {
 			l.debug("je vais supprimer le département par son id:"+depId);
-		    deptRepoistory.delete(departement.get());
+		    deptRepository.delete(departement.get());
 			l.debug("Département supprimé avec succés");
 			l.info("Out deleteDepartementById()");
+			}
+			else{
+				l.warn("Département aved l'id"+depId+"n'existe pas");
 			}
 			return 1;
 			
@@ -130,9 +140,9 @@ public class DepartementServiceImpl implements IDepartementService {
 	public Departement desaffecterDepartementDuEntreprise (int depId , int entId){
 		try {
 			l.info("In desaffecterDepartementDuEntreprise :  ");
-			Entreprise ent = entrepriseRepoistory.findById(entId).orElse(null);
+			Entreprise ent = entrepriseRepository.findById(entId).orElse(null);
 			l.info("Entreprise récupérer avec succés");
-			Departement depManagedEntity = deptRepoistory.findById(depId).orElse(null);
+			Departement depManagedEntity = deptRepository.findById(depId).orElse(null);
 			l.info("depManagedEntity récupérer avec succés");
 			if (depManagedEntity != null){
 		  if (depManagedEntity.getEntreprise() == ent )
@@ -154,5 +164,14 @@ public class DepartementServiceImpl implements IDepartementService {
 		}
 
 		}
+	@Override
+	public Integer ajouterDepartement(Departement dep) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
 
 }

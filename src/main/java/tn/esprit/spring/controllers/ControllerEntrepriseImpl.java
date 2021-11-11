@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.services.IContratService;
+import tn.esprit.spring.services.IDepartementService;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
@@ -24,6 +27,10 @@ public class ControllerEntrepriseImpl{
 	IEntrepriseService ientrepriseservice;
 	@Autowired
 	ITimesheetService itimesheetservice;
+	@Autowired
+	IDepartementService iDepartementService;
+	@Autowired
+	IContratService iContratService;
 
 	public int ajouterEntreprise(Entreprise ssiiConsulting) {
 		ientrepriseservice.ajouterEntreprise(ssiiConsulting);
@@ -52,5 +59,12 @@ public class ControllerEntrepriseImpl{
 	public void deleteDepartementById(int depId) {
 		ientrepriseservice.deleteDepartementById(depId);
 
+	}
+	public List<Departement> getAllDepartements() {
+		return iDepartementService.getAllDepartements();
+	}
+
+	public List<Contrat> getAllContrats() {
+		return iContratService.getAllContrats();
 	}
 }
