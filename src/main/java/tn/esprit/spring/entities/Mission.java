@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.modelmapper.ModelMapper;
 
 @Entity
 public class Mission implements Serializable {
@@ -80,5 +83,11 @@ public class Mission implements Serializable {
 	}
 	
 	
+	public static Mission convertToEntity(MissionDTO missionDto) throws ParseException {
+		ModelMapper modelMapper = new ModelMapper();
+	    Mission mission = modelMapper.map(missionDto, Mission.class);
+
+	    return mission;
+	}
 
 }

@@ -1,7 +1,8 @@
-pipeline {
+
+	pipeline {
 
     environment { 
-        registry = "hajerzitouni/timesheet" 
+         registry = "hajerzitouni/timesheet" 
         registryCredential = 'dockerHub' 
         dockerImage = '' 
     }
@@ -12,7 +13,6 @@ pipeline {
 		    
 			// stage('Cloning our Git') { 
             //     steps { 
-			// 		bat "del -f ."
             //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
@@ -49,46 +49,57 @@ pipeline {
                 } 
             }
 
-           stage('Deploy our image') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-             }
-           } 
+        //    stage('Deploy our image') { 
+        //         steps { 
+        //             script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.push() 
+        //             }
+        //         } 
+        //      }
+        //    } 
           
-           stage('Cleaning up') { 
+        //    stage('Cleaning up') { 
+        //         steps { 
+        //             bat "docker rmi $registry:$BUILD_NUMBER" 
+        //        //   bat "docker rmi mysqldb" 
+        //         }
+        //    } 
+
+		//     stage('Pulling from docker hub') { 
+        //         steps { 
+        //             script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.pull() 
+        //             }
+                   
+        //         } 
+        //      }
+        //    } 
+
+        //     stage('run images') { 
+        //         steps { 
+        //             // bat "docker run $registry:$BUILD_NUMBER" 
+        //         }
+        //    } 
+        //     stage('create docker network') { 
+        //         steps { 
+
+        //             bat "docker network create timesheet-network"
+ 
+        //         }
+        //    }  
+            stage('pull and run mysql') { 
                 steps { 
-                    bat "docker rmi $registry:$BUILD_NUMBER" 
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
+
+                }
+           }    
+           stage('run images') { 
+                steps { 
+                    bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
                 }
            } 
-
-		    stage('Pulling from docker hub') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.pull() 
-                    }
-                } 
-             }
-           } 
-		      stage('run images') { 
-                steps { 
-                    // bat "docker network create timesheet-network"
-                    bat "docker container run --name mysqldb  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6 -p 3306:3306"
-                    // bat "docker run $registry:$BUILD_NUMBER" 
-                    bat "docker container run $registry:$BUILD_NUMBER -p 8083:8083" 
-                }
-           }        
-          // stage('run image') { 
-                //steps { 
-                 //   bat "docker run $registry:$BUILD_NUMBER" 
-               // }
-         //  } 
-
-
 	}
 	
 	  post{

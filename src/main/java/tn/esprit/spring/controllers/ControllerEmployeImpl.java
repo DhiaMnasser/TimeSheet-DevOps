@@ -202,7 +202,9 @@ public class ControllerEmployeImpl  {
 	public int ajouterContrat(Contrat contrat) {
 		employeService.ajouterContrat(contrat);
 		return contrat.getReference();
+		
 	}
+	
 
 	public void affecterContratAEmploye(int contratId, int employeId)
 	{
