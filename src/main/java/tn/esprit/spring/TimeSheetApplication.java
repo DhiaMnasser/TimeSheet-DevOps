@@ -32,7 +32,6 @@ public class TimeSheetApplication {
 		return rwFilter;
 	}
 
-
 	@Bean
 	public FilterRegistrationBean<LoginFilter> loginFilter() {
 		FilterRegistrationBean<LoginFilter> registration = new FilterRegistrationBean<>();
