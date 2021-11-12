@@ -16,7 +16,7 @@ pipeline {
             //       }
             // } 
 
-            stage('pull and run mysql') { 
+            stage('Pull And Run MySQL') { 
                 steps { 
                     bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
 
@@ -71,7 +71,7 @@ pipeline {
                 }
            } 
 
-		    stage('Pulling from docker hub') { 
+		    stage('Pulling from DockerHub') { 
                 steps { 
                     script { 
                     docker.withRegistry( '', registryCredential ) { 
@@ -94,7 +94,7 @@ pipeline {
         //         }
         //    }  
         
-           stage('run images') { 
+           stage('Run Images') { 
                 steps { 
                     bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
                 }
