@@ -15,23 +15,18 @@ pipeline {
             //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
-            stage('pull and run mysql') { 
-                steps { 
-                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
-
-                }
-           }    
+           
 			stage('Package'){
 				steps{
 					bat "mvn package -DskipTests"
 				}				
 			}
 
-			stage('Test'){
-				steps{
-					bat "mvn test"
-				}				
-			}
+			// stage('Test'){
+			// 	steps{
+			// 		bat "mvn test"
+			// 	}				
+			// }
 
 			stage('Sonar Analyse'){
 				steps{
@@ -93,6 +88,13 @@ pipeline {
  
         //         }
         //    }  
+        
+         stage('pull and run mysql') { 
+                steps { 
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
+
+                }
+           }    
            
            stage('run images') { 
                 steps { 
