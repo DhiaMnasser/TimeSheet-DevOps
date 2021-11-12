@@ -20,7 +20,7 @@ services:
     depends_on:
       - myapp-mysql
     ports:
-      - 8085:8085
+      - 8083:8083
     networks:
       - app-mysql
     environment:
