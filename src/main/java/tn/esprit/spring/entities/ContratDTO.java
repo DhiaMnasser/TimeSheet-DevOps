@@ -1,33 +1,41 @@
 package tn.esprit.spring.entities;
 
-import java.io.Serializable;
+
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
-
-
+import lombok.Data;
+@Data
 public class ContratDTO {
-
-
-	private Date dateDebut;
-	
+	private  Date dateDebut;
 	private String typeContrat;
-	
-	
-	private float telephone;
-	
-
-	private Employe employe;
-
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+	public String getTypeContrat() {
+		return typeContrat;
+	}
+	public void setTypeContrat(String typeContrat) {
+		this.typeContrat = typeContrat;
+	}
+	public float getSalaire() {
+		return salaire;
+	}
+	public void setSalaire(float salaire) {
+		this.salaire = salaire;
+	}
 	private float salaire;
-
-	
+	public ContratDTO(Date dateDebut, String typeContrat, float salaire) {
+		super();
+		this.dateDebut = dateDebut;
+		this.typeContrat = typeContrat;
+		this.salaire = salaire;
+	}
+	public ContratDTO() {
+		super();
+		
+	}
 	
 }

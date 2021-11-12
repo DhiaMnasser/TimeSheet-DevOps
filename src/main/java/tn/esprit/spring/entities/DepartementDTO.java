@@ -1,29 +1,35 @@
 package tn.esprit.spring.entities;
 
-import java.util.List;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
+@Data
 public class DepartementDTO {
+   private int id;
+   private String name;
 
+	  public int getId() {
+			return id;
+		}
 
-	private String name;
+		public void setId(int id) {
+			this.id = id;
+		}
 
-	private List<Employe> employes;
-	
-	private List<Mission> missions;
-	
-	private Entreprise entreprise;
-
-
-
+public DepartementDTO(String name) {
+	super();
+	this.name = name;
 }
+public DepartementDTO() {
+	super();
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getName() {
+	return name;
+}
+
+
+
+
+   }

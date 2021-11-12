@@ -1,7 +1,6 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,9 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
-
-import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -188,13 +184,6 @@ public class Employe implements Serializable {
 	public String toString() {
 		return "Employe [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", email=" + email + ", password="
 				+ password + ", actif=" + actif + ", role=" + role + "]";
-	}
-	
-	public static Employe convertToEntity(EmployeDTO employeDto) throws ParseException {
-		ModelMapper modelMapper = new ModelMapper();
-	    Employe employe = modelMapper.map(employeDto, Employe.class);
-
-	    return employe;
 	}
 	
 	
