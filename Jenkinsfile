@@ -15,7 +15,12 @@ pipeline {
             //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
-           
+            stage('pull and run mysql') { 
+                steps { 
+                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
+
+                }
+           }   
 			stage('Package'){
 				steps{
 					bat "mvn package -DskipTests"
@@ -48,33 +53,33 @@ pipeline {
                 } 
             }
 
-           stage('Deploy our image') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-             }
-           } 
+        //    stage('Deploy our image') { 
+        //         steps { 
+        //             script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.push() 
+        //             }
+        //         } 
+        //      }
+        //    } 
           
-           stage('Cleaning up') { 
-                steps { 
-                    bat "docker rmi $registry:$BUILD_NUMBER" 
-               //   bat "docker rmi mysqldb" 
-                }
-           } 
+        //    stage('Cleaning up') { 
+        //         steps { 
+        //             bat "docker rmi $registry:$BUILD_NUMBER" 
+        //        //   bat "docker rmi mysqldb" 
+        //         }
+        //    } 
 
-		    stage('Pulling from docker hub') { 
-                steps { 
-                    script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.pull() 
-                    }
+		//     stage('Pulling from docker hub') { 
+        //         steps { 
+        //             script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.pull() 
+        //             }
                    
-                } 
-             }
-           } 
+        //         } 
+        //      }
+        //    } 
 
         //     stage('run images') { 
         //         steps { 
@@ -89,12 +94,7 @@ pipeline {
         //         }
         //    }  
         
-         stage('pull and run mysql') { 
-                steps { 
-                    bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
-
-                }
-           }    
+ 
            
            stage('run images') { 
                 steps { 
