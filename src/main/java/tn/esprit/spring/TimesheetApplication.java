@@ -39,5 +39,4 @@ public class TimeSheetApplication {
 		registration.setFilter(new LoginFilter());
 		return registration;
 	}
- 
 }
