@@ -2,16 +2,17 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.DepartementDTO;
 import tn.esprit.spring.entities.Entreprise;
-import tn.esprit.spring.repositorys.DepartementRepository;
-import tn.esprit.spring.repositorys.EntrepriseRepository;
+import tn.esprit.spring.repository.DepartementRepository;
+import tn.esprit.spring.repository.EntrepriseRepository;
 
 @Service
 public class DepartementServiceImpl implements IDepartementService {
@@ -21,7 +22,11 @@ public class DepartementServiceImpl implements IDepartementService {
 	DepartementRepository deptRepoistory;
     @Autowired
     EntrepriseRepository entrepriseRepoistory;
-	private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);
+    @Autowired
+    DepartementConverter converter;
+	
+    
+    private static final Logger l = LogManager.getLogger(DepartementServiceImpl.class);
 	
 	//Récupération de la liste des département
     public List<Departement> getAllDepartements() {
@@ -30,7 +35,7 @@ public class DepartementServiceImpl implements IDepartementService {
     	try{
 			l.info("In getAllDepartements()");
 			l.debug("Je vais récupérer la liste département");
-			list.add( (Departement) deptRepoistory.findAll());
+			list=  (ArrayList<Departement>) deptRepoistory.findAll();
 			l.debug("La liste de département est récupéré avec succés");
 			l.info("Out getAllDepartements()");		
 			return list;
@@ -55,21 +60,22 @@ public class DepartementServiceImpl implements IDepartementService {
 
 }
     	
-	@Transactional
     //Ajout d'une département	
-	public Integer ajouterDepartement(Departement dep) {
+	public Integer ajouterDepartement(DepartementDTO dep) {
 		try{
 			l.info("In ajouterDepartement()");
-			deptRepoistory.save(dep);
-			l.debug("departement ajouté et portant la ref  = "+dep.getId());
-			l.info("Out ajouterDepartement()");
-			return dep.getId();
+			Departement depart=converter.depTodo(dep);
+			deptRepoistory.save(depart);
+			l.debug("departement ajouté et portant la ref  = "+depart.getId());
+			return depart.getId();
 		} catch (Exception e) {
 			l.error("erreur dans la methode ajouterContrat() :"+e);
 			return null;
 		}
 		
+		
 	}
+
 	//Affectation d'une département à une entreprise
 	public Departement affecterDepartementAEntreprise(int depId, int entrepriseId) {
 		         try {
@@ -94,6 +100,9 @@ public class DepartementServiceImpl implements IDepartementService {
 					l.info("Out ajouterDepartement()");
 					return depManagedEntity;
 						}
+		        	 else{
+		        		 l.warn("Soit département avec l'id"+depId+"n'existe pas ou bien entreprise avec id"+entrepriseId+"n'existe pas");
+		        	 }
 				}
 				catch (Exception e) {
 					l.error("erreur dans la methode affecterDepartementAEntreprise() :"+e);
@@ -114,6 +123,9 @@ public class DepartementServiceImpl implements IDepartementService {
 		    deptRepoistory.delete(departement.get());
 			l.debug("Département supprimé avec succés");
 			l.info("Out deleteDepartementById()");
+			}
+			else{
+				l.warn("Département aved l'id"+depId+"n'existe pas");
 			}
 			return 1;
 			
@@ -154,5 +166,9 @@ public class DepartementServiceImpl implements IDepartementService {
 		}
 
 		}
+	
+	
+	
+
 
 }

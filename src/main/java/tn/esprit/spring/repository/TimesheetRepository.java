@@ -1,4 +1,4 @@
-package tn.esprit.spring.repositorys;
+package tn.esprit.spring.repository;
 
 import java.util.Date;
 import java.util.List;

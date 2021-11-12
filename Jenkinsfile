@@ -16,33 +16,33 @@
             //         bat "git clone -b Dhia-Mnasser --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
-
-			stage('Clean Install'){
-				steps{
-					bat "mvn clean install"
-				}				
-			}
             stage('pull and run mysql') { 
                 steps { 
                     bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
 
                 }
-           } 
-			stage('Test'){
+           }   
+			stage('Package'){
 				steps{
-					bat "mvn test"
+					bat "mvn package -DskipTests"
 				}				
 			}
 
+			// stage('Test'){
+			// 	steps{
+			// 		bat "mvn test"
+			// 	}				
+			// }
+
 			stage('Sonar Analyse'){
 				steps{
-                    bat "mvn sonar:sonar"
+                    bat "mvn sonar:sonar -DskipTests"
                   }
             }
             
             stage('Nexus Deploy'){
 				steps{
-                    bat "mvn deploy"
+                    bat "mvn deploy -DskipTests"
                   }
             }
             
@@ -94,7 +94,9 @@
  
         //         }
         //    }  
-               
+        
+ 
+           
            stage('run images') { 
                 steps { 
                     bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
@@ -104,7 +106,9 @@
 	
 	  post{
             always{
-            cleanWs()
+                emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        
+                cleanWs()
         }
     }
 	 
