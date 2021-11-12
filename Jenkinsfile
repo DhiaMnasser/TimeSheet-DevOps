@@ -30,13 +30,13 @@ pipeline {
 
 			stage('Sonar Analyse'){
 				steps{
-                    bat "mvn sonar:sonar"
+                    bat "mvn sonar:sonar -DskipTests"
                   }
             }
             
             stage('Nexus Deploy'){
 				steps{
-                    bat "mvn deploy"
+                    bat "mvn deploy -DskipTests"
                   }
             }
             
