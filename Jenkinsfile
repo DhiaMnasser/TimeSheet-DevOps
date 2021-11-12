@@ -54,33 +54,33 @@
                 } 
             }
 
-        //    stage('Deploy our image') { 
-        //         steps { 
-        //             script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.push() 
-        //             }
-        //         } 
-        //      }
-        //    } 
+           stage('Deploy our image') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+             }
+           } 
           
-        //    stage('Cleaning up') { 
-        //         steps { 
-        //             bat "docker rmi $registry:$BUILD_NUMBER" 
-        //        //   bat "docker rmi mysqldb" 
-        //         }
-        //    } 
+           stage('Cleaning up') { 
+                steps { 
+                    bat "docker rmi $registry:$BUILD_NUMBER" 
+               //   bat "docker rmi mysqldb" 
+                }
+           } 
 
-		//     stage('Pulling from docker hub') { 
-        //         steps { 
-        //             script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.pull() 
-        //             }
+		    stage('Pulling from docker hub') { 
+                steps { 
+                    script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.pull() 
+                    }
                    
-        //         } 
-        //      }
-        //    } 
+                } 
+             }
+           } 
 
         //     stage('run images') { 
         //         steps { 
