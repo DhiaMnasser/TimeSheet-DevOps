@@ -10,4 +10,5 @@ public interface IEntrepriseService {
 	List<String> getAllDepartementsNamesByEntreprise(int entrepriseId);
 	public Integer deleteEntrepriseById(int entrepriseId);
 	public Entreprise getEntrepriseById(int entrepriseId);
+	
 }

@@ -2,6 +2,7 @@ package tn.esprit.spring.entities;
 
 import lombok.Data;
 
+
 @Data
 public class EntrepriseDTO {
 	  private int id;
@@ -55,5 +56,6 @@ public class EntrepriseDTO {
 			super();
 			this.id = id;
 		}	
+		
 }
 

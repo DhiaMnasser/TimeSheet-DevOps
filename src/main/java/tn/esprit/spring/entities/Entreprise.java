@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class Entreprise implements Serializable{
 
@@ -77,6 +78,5 @@ public class Entreprise implements Serializable{
 		departement.setEntreprise(this);
 		this.departements.add(departement);
 	}
-
 
 }

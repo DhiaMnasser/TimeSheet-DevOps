@@ -25,5 +25,4 @@ public class ControllerContratImpl {
 		contartservice.deleteAllContratJPQL();
 
 	}
-
 }

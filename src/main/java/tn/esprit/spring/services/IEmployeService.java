@@ -24,4 +24,6 @@ public interface IEmployeService {
 	public Double getSalaireMoyenByDepartementId(int departementId);
 	public List<Employe> getAllEmployes();
 	Integer addOrUpdateEmploye(EmployeDTO employe);
+	
+	
 }

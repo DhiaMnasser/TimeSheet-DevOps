@@ -22,7 +22,5 @@ public interface IDepartementService {
 
 	public Departement desaffecterDepartementDuEntreprise (int depId , int entId);
 
-	
-
-	
+		
 }

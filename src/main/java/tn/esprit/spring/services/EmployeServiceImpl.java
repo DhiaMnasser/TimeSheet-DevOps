@@ -122,8 +122,6 @@ public class EmployeServiceImpl implements IEmployeService {
 			return 0;
 		}
 	
-		
-		
 	}
 	
 	public int deleteEmployeById(int employeId)

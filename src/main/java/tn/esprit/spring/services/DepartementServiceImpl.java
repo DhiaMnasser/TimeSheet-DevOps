@@ -135,7 +135,6 @@ public class DepartementServiceImpl implements IDepartementService {
 			return 0;
 		}
 
-		 
 	}
 	//Désaffectation d'une département à une entreprise
 	@Transactional
@@ -167,8 +166,4 @@ public class DepartementServiceImpl implements IDepartementService {
 
 		}
 	
-	
-	
-
-
 }

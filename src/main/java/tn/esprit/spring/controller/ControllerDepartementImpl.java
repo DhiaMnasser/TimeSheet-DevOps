@@ -19,5 +19,4 @@ public class ControllerDepartementImpl {
 		idepartementservice.deleteDepartementById(depId);
 
 	}
-
 }

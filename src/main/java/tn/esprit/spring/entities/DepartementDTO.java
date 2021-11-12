@@ -2,6 +2,7 @@ package tn.esprit.spring.entities;
 
 import lombok.Data;
 
+
 @Data
 public class DepartementDTO {
    private int id;
@@ -28,8 +29,6 @@ public void setName(String name) {
 public String getName() {
 	return name;
 }
-
-
 
 
    }

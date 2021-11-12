@@ -150,6 +150,4 @@ public class RestControlEmploye {
 		return iemployeservice.getAllEmployes();
 	}
 
-	
-	
 }

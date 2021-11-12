@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entities.ContratDTO;
 import tn.esprit.spring.services.IContratService;
 
-
-
-
 @RestController
 public class RestControlContrat {
 
@@ -42,6 +39,4 @@ public class RestControlContrat {
 		
 	}
     
-    
-
 }

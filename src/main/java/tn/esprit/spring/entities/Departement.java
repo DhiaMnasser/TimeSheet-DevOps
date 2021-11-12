@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
+
 @Entity
 public class Departement implements Serializable {
 
@@ -82,7 +83,6 @@ public class Departement implements Serializable {
 	public void setEntreprise(Entreprise entreprise) {
 		this.entreprise = entreprise;
 	}
-	
 	
 
 }

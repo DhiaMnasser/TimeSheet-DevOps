@@ -158,8 +158,6 @@ IEmployeService employeService;
 
 	}
 
-
-
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
 	{
 		employeService.desaffecterEmployeDuDepartement(employeId, depId);
@@ -181,7 +179,6 @@ IEmployeService employeService;
 		employeService.deleteEmployeById(employeId);
 
 	}
-
 
 	public int getNombreEmployeJPQL() {
 
@@ -237,8 +234,6 @@ IEmployeService employeService;
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 
 
 	public boolean isActif() {

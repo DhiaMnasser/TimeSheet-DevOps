@@ -51,7 +51,6 @@ public class RestControlDepartement {
     @PutMapping(value = "/desaffecterDepartementAEntreprise/{iddept}/{identreprise}") 
     public void desaffecterDepartementEntreprise(@PathVariable("iddept")int depId, @PathVariable("identreprise")int entrepriseId){
     	idepartementservice.desaffecterDepartementDuEntreprise(depId, entrepriseId);
-    
     }
 
 }

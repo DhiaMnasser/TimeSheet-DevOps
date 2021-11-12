@@ -74,7 +74,4 @@ public class ContratServiceImpl implements IContratService {
 			l.info("Out deleteAllContratJPQL() : ");
 	}
 
-	
-
-
 }

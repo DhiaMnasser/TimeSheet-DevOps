@@ -16,4 +16,5 @@ public interface ContratRepository extends CrudRepository<Contrat, Integer>{
     @Transactional
     @Query("DELETE from Contrat")
     public void deleteAllContratJPQL();
+    
 } 
