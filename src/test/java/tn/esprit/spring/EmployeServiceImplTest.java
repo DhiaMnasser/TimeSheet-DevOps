@@ -49,7 +49,7 @@ public class EmployeServiceImplTest {
 	@Test
 	public void testaddOrUpdateEmploye()  {      
 		 l.info("in testaddOrUpdateEmploye()");
-		 idE=iempserv.addOrUpdateEmploye(new EmployeDTO("Devops","Devops", "test@devops.fr","xx", true, Role.ADMINISTRATEUR));
+		 idE=iempserv.addOrUpdateEmploye(new EmployeDTO("Devops", "Devops", "test@devops.fr","xx", true, Role.ADMINISTRATEUR));
 		 Assert.notNull(idE,"employe added failed");
 		 l.info("Out testaddOrUpdateEmploye()");
 	}

@@ -15,7 +15,7 @@ pipeline {
             //         bat "git clone -b Ahmed-Haddad --single-branch https://github.com/DhiaMnasser/TimeSheet-DevOps.git ."
             //       }
             // } 
-            stage('pull and run mysql') { 
+            stage('Pull And Run MYSQL') { 
                 steps { 
                     bat "docker container run --name mysqldb --network timesheet-network  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=timesheet -d mysql:5.6"
 
@@ -96,7 +96,7 @@ pipeline {
         
  
            
-           stage('run images') { 
+           stage('Run Images') { 
                 steps { 
                     bat "docker container run --network timesheet-network --name timesheet-container -p 8083:8083 -d $registry:$BUILD_NUMBER"
                 }
